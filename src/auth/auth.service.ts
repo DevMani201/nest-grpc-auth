@@ -29,7 +29,7 @@ export class AuthService {
   async getPayloadData(token: string): Promise<any> {
     return this.jwtService.decode(token);
   }
-  async validateToken(jwt: string) {
+  async validateToken(jwt: string): Promise<any> {
     try {
       const res = await this.jwtService.verify(jwt);
       console.log(res);
@@ -38,7 +38,7 @@ export class AuthService {
         error: null,
       };
     } catch (err) {
-      console.log(err);
+      console.log('err', err);
       return {
         status: HttpStatus.FORBIDDEN,
         error: ['invalid token'],
